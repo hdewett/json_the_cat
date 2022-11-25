@@ -4,12 +4,18 @@ const breedName = args[0];
 
 
 request(`https://api.thecatapi.com/v1/breeds/search?q=${breedName}`, function(error, response, body) {
+  
+  if (error) {
+    console.log(`Request failed.`);
+    return;
+  }
+
   const data = JSON.parse(body);
 
-  if (data.length === 0){
+  if (data.length === 0) {
     console.log("Breed name not found.");
 
   } else {
     console.log(data[0]["description"]);
   }
-  });
+});
